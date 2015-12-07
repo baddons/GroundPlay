@@ -15,7 +15,7 @@ import javax.websocket.server.ServerEndpoint;
 
 /**
  *
- * @author rralluri
+ * 
  */
 @ServerEndpoint("/gpServer") 
 public class gpServer {
