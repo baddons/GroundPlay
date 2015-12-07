@@ -1,0 +1,176 @@
+<div>
+    <form  method="get" action="#">
+<h3>Client Master Creation</h3>
+  <div class="form-group">
+    <label for="clientName">Client Name</label>
+    <input type="text" class="form-control"  ng-model="master.clientName" focus="clientType" id="clientName"  name="clientName" placeholder="Client Name">
+  </div>
+  <div class="form-group">
+    <label for="clientAddress">Type</label>
+    <select class="form-control"  ng-model="master.clientType" focus="clientOB" id="clientType" name="clientType">
+        <option value="Regular">Regular </option>
+        <option value="Bk">Bk </option>
+        <option value="Dummy">Dummy </option>
+        <option value="Partner">Partner</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="clientAddress">	Opening Balance</label>
+    <input type="number" class="form-control" ng-model="master.clientOB" focus="clientLimit" id="clientOB" name="openingBalance" placeholder="openingBalance">
+  </div>
+  <div class="form-group">
+    <label for="clientAddress">	Credit Limit</label>
+    <input type="number" class="form-control" ng-model="master.clientLimit" focus="commMethod" id="clientLimit" name="clientLimit" placeholder="Credit Limit">
+  </div>
+
+  <div class="form-group">
+    <label for="clientAddress">Commission Method</label>
+    <select class="form-control" ng-model="master.commMethod" id="commMethod" focus="settlePartner" name="commMethod">
+        <option value="SRR">Separate Race and Round</option>
+        <option value="TOT">Commission on Total Race</option>
+        <option value="EW">Entry wise</option>
+    </select>
+  </div>
+<div>
+    <label for="clientPhone">Settlement Partner </label>
+                        <select class="form-control" ng-model="master.settlePartner" focus="adminCommThro" id="settlePartner" name="settlePartner">
+                         <option value="0">admin</option>
+                        <option ng-repeat="p in partners" value="{{p.cid}}">{{p.clientName}}</option>
+                    </select>
+  </div>
+<div>
+    <label for="clientPhone">Admin Commssion Through</label>
+                        <select class="form-control" ng-model="master.adminCommThro" focus="clientStatus" id="adminCommThro" name="adminCommThro">
+                         <option value="0">Admin</option>
+                        <option ng-repeat="p in partners" value="{{p.cid}}">{{p.clientName}}</option>
+                    </select>
+  </div>
+<div>
+    <label for="clientPhone">Client Status</label>
+                        <select class="form-control" ng-model="master.clientStatus" focus="mCommType" id="clientStatus" name="clientStatus">
+                         <option value="Active">Active</option>
+                         <option value="Active">Locked</option>
+                         <option value="Close">Close</option>
+                        
+                    </select>
+  </div>
+<h4>Match Selection </h4>
+<div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th><span ng-click="addPartner()" class="glyphicon glyphicon-plus-sign"></span> </th>
+                <th>Partner</th>
+                <th>Risk</th>
+                <th>comm.Limit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="l in master.matchDet">
+                <td>{{l.mdid}}</td>
+                <td>
+                    <select class="form-control" ng-model="l.partnerid" id="clientType" name="clientType">
+                        <option value="0">self</option>
+                        <option ng-repeat="p in partners" value={{p.cid}}>{{p.clientName}}</option>
+                      
+
+                    </select>
+                </td>
+                <td>
+                     <input type="number" ng-model="l.risk"  id="partnerRisk" name="partnerRisk" placeholder="Partner Risk"/>
+                </td>
+                <td>
+                     <input type="number" ng-model="l.commLimit"  id="partnerRisk" name="partnerRisk" placeholder="Partner Risk"/>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+  <div class="form-group">
+    <label for="clientAddress">Commission Type</label>
+    <select class="form-control" ng-model='master.mCommType' focus="mCommPc" id="mCommType" name="mCommType">
+        <option value="Both">Both </option>
+        <option value="Minius">Minius(-)</option>
+        <option value="Plus">Plus(+)</option>
+        <option value="Turnover">Turnover</option>
+    </select>
+  </div>
+
+    <div class="form-group">
+    <label for="clientPhone">Commission Percent </label>
+    <input type="number" class="form-control" ng-model="master.mCommPc" focus="mCommReceiver" id="mCommPc" name="mCommPc " placeholder="Commission Percent ">
+  </div>
+    <div class="form-group">
+    <label for="clientPhone">Commission Receiver </label>
+      <select class="form-control" ng-model="master.mCommReceiver" focus="fCommType" id="mCommReceiver" name="mCommReceiver">
+                        <option value="0">self</option>
+                        <option ng-repeat="p in partners" value="{{p.cid}}">{{p.clientName}}</option>
+                      
+
+                    </select>
+    
+  </div>
+
+ 
+
+
+<h4>Fancy Selection </h4>
+ <div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th><span ng-click="addFancyPartner()" class="glyphicon glyphicon-plus-sign"></span> </th>
+                <th>Partner</th>
+                <th>Risk</th>
+                <th>comm Limit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="lf in master.matchFancyDet">
+                <td>{{lf.mdid}}</td>
+                <td>
+                    <select class="form-control" ng-model="lf.partnerid" id="clientType" name="clientType">
+                        <option value="0">self</option>
+                           <option ng-repeat="p in partners" value="{{p.cid}}">{{p.clientName}}</option>
+
+                    </select>
+                </td>
+                <td>
+                     <input type="text" ng-model="lf.risk"  id="risk" name="risk" placeholder="Partner Risk"/>
+                </td>
+                <td>
+                     <input type="text" ng-model="lf.commLimit"  id="commLimit" name="commLimit" placeholder="Partner Risk"/>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+ <div class="form-group">
+    <label for="clientAddress">Commission Type</label>
+    <select class="form-control" ng-model='master.fCommType' focus="fCommPc" id="fCommType" name="fCommType">
+        <option value="Both">Both </option>
+        <option value="Minius">Minius(-)</option>
+        <option value="Plus">Plus(+)</option>
+        <option value="Turnover">Turnover</option>
+    </select>
+  </div>
+
+    <div class="form-group">
+    <label for="clientPhone">Commission Percent </label>
+    <input type="number" class="form-control" ng-model="master.fCommPc" focus="fCommReceiver" id="fCommPc" name="fCommPc " placeholder="Commission Percent ">
+  </div>
+    <div class="form-group">
+    <label for="clientPhone">Commission Receiver </label>
+      <select class="form-control" ng-model="master.fCommReceiver" focus="submit" id="fCommReceiver" name="fCommReceiver">
+                        <option value="0">self</option>
+                        <option ng-repeat="p in partners" value="{{p.cid}}">{{p.clientName}}</option>
+                      
+
+                    </select>
+    
+  </div>
+<button  ng-click="addClient()" id="submit" class="btn btn-default">Save</button>
+</form>
+
+</div>

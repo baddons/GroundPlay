@@ -1,0 +1,62 @@
+<div>
+                  <form   >
+            <div>
+              
+            </div>
+                    <div class="col-sm-4 col-sm-offset-4">
+                        <h3>Match Creation</h3>
+                        <div class="form-group">
+                            <label for="matchId">Match ID</label>
+                            <input type="text" class="form-control"  ng-model="txtId" id="matchId"  name="matchId" placeholder="ID" readonly/>
+                        </div>
+                        <div class="form-group">
+                            <label for="matchType">Match Type</label>
+                            <select class="form-control" ng-model="selType" focus="matchName"  id="matchType" name="matchType">
+                                <option value="ODI">ODI</option>
+                                <option value="T20">T20</option>
+                                <option value="Test">Test</option>
+                                <option value="Series">Series</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="clientName">Match Name</label>
+                            <input type="text" class="form-control" id="matchName" focus="matchShort"  ng-model="txtName"  name="matchName" placeholder="Match Name"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="clientName">Match Short</label>
+                            <input type="text" class="form-control" id="matchShort" focus="playDate"  ng-model="txtShort"  name="matchShort" placeholder="Match Short"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="clientAddress">Play Date</label>
+                            <input type="text" class="form-control" id="playDate" focus="playTime"  ng-model="txtDate" name="playDate" placeholder="YYYY-MM-DD">
+                        </div>
+                         <div class="form-group">
+                            <label for="clientPhone">Time</label>
+                            <input type="text" class="form-control" id="playTime" focus="txtTame"  ng-model="txtTime" name="playTime" placeholder="HH:MM">
+                        </div>
+                        <div class="form-group">
+                            <label for="clientPhone">Place</label>
+                            <input type="text" class="form-control" id="place" ng-model="txtPlace" focus="clientType"  name="place" placeholder="place">
+                        </div>
+                        <h3>Teams List <span ng-click="addTeam()" class="btn btn-info glyphicon glyphicon-plus"></span></h3>
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>id</th>
+                                    <th>Team name</th>
+                                </tr>
+                            </thead>    
+                            <tbody>
+                                <tr ng-repeat="t in teams">
+                                    <td>{{t.id}} </td>
+                                    <td><input type="text" id="txtTame"  ng-model="t.team" name="txtTeam"/><span ng-click="deleteTeam($index)" class="glyphicon glyphicon-trash"></span>  </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button  class="btn btn-default">Save</button>
+                        <button  class="btn btn-default">View</button>
+                    </div>
+
+                </form>
+
+</div>

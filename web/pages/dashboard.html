@@ -1,0 +1,53 @@
+<div>
+<h3>Client Transactions</h3>
+<table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Sr.No</th>
+                <th>Rate</th>
+                <th>Amount</th>
+                <th>Team</th>
+                <th>K/L</th>
+
+                <th>Client</th>
+                <th>ACTION</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td><input type="number" id="rate" ng-model="entry.rate"  focus="amount" /> </td>
+                <td><input type="number" id="amount" ng-model="entry.amount" focus="team" /> </td>
+                <td><select ng-model="entry.team"  id="team" focus="kl">
+                        <option ng-repeat="t in teamList" value="{{t.mtid}}">{{t.team_name}}</option>
+                  
+                    </select> 
+                </td>
+                <td><select ng-model="entry.kl"   focus="client"  id="kl">
+                        <option value="K">K</option>
+                        <option value="L">L</option>
+                    </select> 
+                </td>
+                <td><select ng-model="entry.client"   focus="_CALL" focusCall="addEntry()" id="client">
+                        <option ng-repeat="c in clients" value="{{c.cid}}">{{c.clientName}}</option>
+                    </select> 
+                </td>
+                <td>
+                    <button class="btn btn-info" ng-click="addEntry()"   id="btnAdd" >add</button>
+                    <button class="btn btn-danger" ng-click="testEntry()" >test</button>
+                </td>
+                
+            </tr>
+            <tr ng-repeat="e in ledger">
+                <td>{{$index}}</td>
+                <td>{{e.rate}}</td>
+                <td>{{e.amt}}</td>
+                <td>{{e.team}}</td>
+                <td>{{e.kl}}</td>
+                <td>{{e.client}}</td>
+                <td><span class="glyphicon glyphicon-remove" ></span></td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html  ng-app="grndApp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Ground</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/lib/angular.min.js" type="text/javascript"></script>
+    <script src="js/lib/angular-route.min.js" type="text/javascript"></script>
+    <script src="js/lib/angular-sanitize.min.js" type="text/javascript"></script>
+    <script src="js/app.js" type="text/javascript"></script>
+    <script src="js/directives.js" type="text/javascript"></script>
+    <script src="js/controls.js" type="text/javascript"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body ng-app="appCtrl">
+      
+      <div class="container-fluid" ng-controller="homeCtrl">
+          <div ng-show="lg">
+               <div class="col-sm-9 text-right">
+                    <ul class="nav nav-pills navbar-right">
+                        <li role="presentation" >
+                            <input type="text" id="userName"  ng-model="userName" class="form-control" placeholder="User Name"/>
+                            </li>
+                            <li role="presentation">
+                                <input type="password" id="password" ng-model="password" class="form-control" placeholder="password"/>
+                            </li>
+                            <li role="presentation"><a  ng-click="login()"><span class="glyphicon glyphicon-log-in"></span> </a></li>
+                    </ul>
+                 
+                   
+                </div>
+          </div>
+          <div  ng-show="main">
+          <div class="row">
+              <div class="col-sm-3">
+                  <h3 class="ground">Ground</h3>
+              </div>
+                <div class="col-sm-9 text-right">
+                    <ul class="nav nav-pills navbar-right">
+                        <li role="presentation" ><a href="#"><span class="glyphicon glyphicon-user">ramesh</span> </a></li>
+                          <li role="presentation"><a href="#">Change Pasword</a></li>
+                          <li role="presentation" ng-click="login()">  <span class="glyphicon glyphicon-off" ></span> </li>
+                    </ul>
+                </div>
+          </div>          <!--row Ends here-->
+          
+          <div class="row">
+          </div>
+          <div class="row">
+              <ul class="nav nav-tabs">
+                  <li role="presentation" ng-repeat="l in lstForms"  class="{{l.slted}}"><a href="#" ng-click="divShow(l.id)" > {{l.frmDB}} </a></li>
+             </ul>
+              
+          </div>
+          <div 
+    ng-switch on="divSelect">
+    
+               <div dashboard   ng-switch-when="1"></div>
+              <div client-Creation  ng-switch-when="3"></div>
+              <div match-Creation  ng-switch-when="2"></div>
+              <div reports  ng-switch-when="4"></div>
+  </div>
+{{ restult |json}}
+      </div>       <!--Container End here-->
+
+</div>
+    
+  </body>
+</html>
