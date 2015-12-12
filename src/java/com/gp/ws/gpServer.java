@@ -6,12 +6,14 @@
 package com.gp.ws;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
+import org.json.JSONObject;
 
 /**
  *
@@ -19,11 +21,13 @@ import javax.websocket.server.ServerEndpoint;
  */
 @ServerEndpoint("/gpServer") 
 public class gpServer {
+    public static HashMap<String,userMaster> sessionManager = new HashMap<>();
      @OnOpen
     public void onOpen(Session session){
         System.out.println(session.getId() + " has opened a connection"); 
         try {
             session.getBasicRemote().sendText("Connection Established");
+            sessionManager.put(session.getId(), null);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -32,7 +36,16 @@ public class gpServer {
     public void onMessage(String message, Session session){
         System.out.println("Message from " + session.getId() + ": " + message);
         try {
-            session.getBasicRemote().sendText(message);
+//           messageobj msg=(messageobj) message;
+            JSONObject jobj = new JSONObject();
+            
+              Object obj =jobj.stringToValue(message);
+         
+             String[] j= JSONObject.getNames(obj);
+                 System.out.println("obj : " + j.length);
+            for(int i=0;i<j.length;i++)
+            System.out.println(j[i]);
+            session.getBasicRemote().sendText("submitted");
         } catch (IOException ex) { 
             ex.printStackTrace();
         }

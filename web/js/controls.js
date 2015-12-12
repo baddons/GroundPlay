@@ -10,10 +10,10 @@ app.controller('homeCtrl', ['$scope','$http','MyService', function ($scope, $htt
         $scope.main=false;
         $scope.login=function(){
         $scope.restult={};    
-            alert($scope.userName);
-            if($scope.userName){
-               console.log('test : ' + $scope.userName );
-               $scope.restult= $MyService.getLoing($scope.userName,$scope.password)
+            alert($scope.m.userName);
+            if($scope.m.userName){
+               console.log('test : ' + $scope.m.userName );
+               $scope.restult= $MyService.getLoing($scope.m)
 //               console.log('test :  );
                
             $scope.lg=false;

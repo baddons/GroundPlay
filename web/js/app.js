@@ -56,11 +56,10 @@ angular.module('grndApp').factory('MyService', ['$q', '$rootScope', function($q,
     }
 
     // Define a "getter" for getting customer data
-    Service.getLoing = function(uid,pd) {
+    Service.getLoing = function(uid) {
       var request = {
         type: "login",
-        user : uid,
-        pwd:pd
+        msg : uid
       }
       // Storing in a variable for clarity on what sendRequest returns
       var promise = sendRequest(request); 
