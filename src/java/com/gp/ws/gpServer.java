@@ -5,15 +5,18 @@
  */
 package com.gp.ws;
 
+import com.gp.ws.request.LoginMessage;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
-import org.json.JSONObject;
+import org.codehaus.jackson.map.ObjectMapper;
 
 /**
  *
@@ -21,7 +24,7 @@ import org.json.JSONObject;
  */
 @ServerEndpoint("/gpServer") 
 public class gpServer {
-    public static HashMap<String,userMaster> sessionManager = new HashMap<>();
+    public static HashMap<String,UserMaster> sessionManager = new HashMap<>();
      @OnOpen
     public void onOpen(Session session){
         System.out.println(session.getId() + " has opened a connection"); 
@@ -35,20 +38,27 @@ public class gpServer {
      @OnMessage
     public void onMessage(String message, Session session){
         System.out.println("Message from " + session.getId() + ": " + message);
+         ObjectMapper mapper = new ObjectMapper();
         try {
-//           messageobj msg=(messageobj) message;
-            JSONObject jobj = new JSONObject();
+             LoginMessage lm=null;
+            MessageObj msg = mapper.readValue(message, MessageObj.class);
+            System.out.println("Login map :  " + msg);
+//            Testing Login Users
+           if(msg.getType().equalsIgnoreCase("login")){
+             lm=mapper.readValue(message,LoginMessage.class);
+                UserMaster user=new UserMaster();
+                user.setUserName(lm.getMsg().getUserName());
+               sessionManager.put(session.getId(), user);
+           }else{
+               
+           }
+             
             
-              Object obj =jobj.stringToValue(message);
-         
-             String[] j= JSONObject.getNames(obj);
-                 System.out.println("obj : " + j.length);
-            for(int i=0;i<j.length;i++)
-            System.out.println(j[i]);
-            session.getBasicRemote().sendText("submitted");
-        } catch (IOException ex) { 
-            ex.printStackTrace();
+            System.out.println("Login message " +  lm.toString());
+        } catch (IOException ex) {
+            Logger.getLogger(gpServer.class.getName()).log(Level.SEVERE, null, ex);
         }
+         
     }
       @OnClose
     public void onClose(Session session){
